@@ -1,8 +1,15 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using NSwag;
 using NSwag.Generation.Processors.Security;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(c =>
