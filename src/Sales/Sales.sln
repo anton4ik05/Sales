@@ -4,11 +4,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLibrary", "BaseLibrary\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{777B10A5-0EFA-48FE-AE25-9DD70268D3DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{46A2C454-E9A2-485C-933A-543A133BBA03}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientLibrary", "ClientLibrary\ClientLibrary.csproj", "{FE4D4E56-F6A2-4ED3-B9C7-DAC6AD7EC9B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerLibrary", "ServerLibrary\ServerLibrary.csproj", "{7B3E713A-6166-4300-A12F-80B70FFDD4F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{7684B3DB-7EEC-4CEC-A0CE-20300F7DF54D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,10 +24,6 @@ Global
 		{777B10A5-0EFA-48FE-AE25-9DD70268D3DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{777B10A5-0EFA-48FE-AE25-9DD70268D3DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{777B10A5-0EFA-48FE-AE25-9DD70268D3DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46A2C454-E9A2-485C-933A-543A133BBA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46A2C454-E9A2-485C-933A-543A133BBA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46A2C454-E9A2-485C-933A-543A133BBA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46A2C454-E9A2-485C-933A-543A133BBA03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE4D4E56-F6A2-4ED3-B9C7-DAC6AD7EC9B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE4D4E56-F6A2-4ED3-B9C7-DAC6AD7EC9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE4D4E56-F6A2-4ED3-B9C7-DAC6AD7EC9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,5 +32,9 @@ Global
 		{7B3E713A-6166-4300-A12F-80B70FFDD4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B3E713A-6166-4300-A12F-80B70FFDD4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B3E713A-6166-4300-A12F-80B70FFDD4F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7684B3DB-7EEC-4CEC-A0CE-20300F7DF54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7684B3DB-7EEC-4CEC-A0CE-20300F7DF54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7684B3DB-7EEC-4CEC-A0CE-20300F7DF54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7684B3DB-7EEC-4CEC-A0CE-20300F7DF54D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
