@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BaseLibrary.Entities;
 
+[Table("users")]
 public class ApplicationUser
 {
     [Key]
