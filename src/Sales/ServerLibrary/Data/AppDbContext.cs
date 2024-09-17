@@ -12,4 +12,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Product> Products { get; set; }
 
     public DbSet<Image> Images { get; set; }
+    
+    public DbSet<SystemRole> SystemRoles { get; set; }
+    
+    public DbSet<UserRole> UserRoles { get; set; }
+    
 }
