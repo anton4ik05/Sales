@@ -4,6 +4,9 @@ using NSwag;
 using NSwag.Generation.Processors.Security;
 using Serilog;
 using ServerLibrary.Data;
+using ServerLibrary.Helpers;
+using ServerLibrary.Repositories.Contracts;
+using ServerLibrary.Repositories.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +16,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers();
 builder.Services.AddOpenApiDocument(c =>
 {
     c.PostProcess = doc =>
@@ -41,11 +44,16 @@ builder.Services.AddDbContext<AppDbContext>(op =>
                  throw new InvalidOperationException("Connection string not found"));
 });
 
+builder.Services.Configure<JwtSection>(builder.Configuration.GetSection(nameof(JwtSection)));
+builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
+
 var app = builder.Build();
 
 app.UseOpenApi();
 app.UseSwaggerUi();
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 app.Run();

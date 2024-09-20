@@ -4,9 +4,9 @@ namespace BaseLibrary.Dtos;
 
 public class AccountBase
 {
-    [DataType(DataType.EmailAddress)]
+    [DataType(DataType.Text)]
     [Required]
-    public string Email { get; set; } = null!;
+    public string UserName { get; set; } = null!;
 
     [DataType(DataType.Password)]
     [Required]

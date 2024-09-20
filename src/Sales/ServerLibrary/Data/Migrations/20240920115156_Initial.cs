@@ -21,8 +21,8 @@ namespace ServerLibrary.Data.Migrations
                     Uri = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     Text = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Promo = table.Column<string>(type: "text", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ExpirationAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ExpirationAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,10 +30,24 @@ namespace ServerLibrary.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "system_roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_system_roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "text", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserName = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false)
                 },
@@ -54,7 +68,7 @@ namespace ServerLibrary.Data.Migrations
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     DiscountPrice = table.Column<decimal>(type: "numeric", nullable: false),
                     PageId = table.Column<int>(type: "integer", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,6 +77,32 @@ namespace ServerLibrary.Data.Migrations
                         name: "FK_products_pages_PageId",
                         column: x => x.PageId,
                         principalTable: "pages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "user_roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoleId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user_roles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_user_roles_system_roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "system_roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_user_roles_users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -97,6 +137,16 @@ namespace ServerLibrary.Data.Migrations
                 name: "IX_products_PageId",
                 table: "products",
                 column: "PageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_roles_RoleId",
+                table: "user_roles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_roles_UserId",
+                table: "user_roles",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -106,10 +156,16 @@ namespace ServerLibrary.Data.Migrations
                 name: "images");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "user_roles");
 
             migrationBuilder.DropTable(
                 name: "products");
+
+            migrationBuilder.DropTable(
+                name: "system_roles");
+
+            migrationBuilder.DropTable(
+                name: "users");
 
             migrationBuilder.DropTable(
                 name: "pages");

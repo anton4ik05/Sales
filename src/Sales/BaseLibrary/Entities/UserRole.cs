@@ -3,7 +3,7 @@
 namespace BaseLibrary.Entities;
 
 [Table("user_roles")]
-public class UserRole(ApplicationUser user, SystemRole role)
+public class UserRole()
 {
     public int Id { get; set; }
     
@@ -12,8 +12,8 @@ public class UserRole(ApplicationUser user, SystemRole role)
     public int UserId { get; set; }
     
     [ForeignKey(nameof(UserId))]
-    public ApplicationUser User { get; set; } = user;
+    public ApplicationUser User { get; set; }
 
     [ForeignKey(nameof(RoleId))]
-    public SystemRole Role { get; set; } = role;
+    public SystemRole Role { get; set; }
 }
