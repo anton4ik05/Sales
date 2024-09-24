@@ -17,4 +17,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     
     public DbSet<UserRole> UserRoles { get; set; }
     
+    public DbSet<RefreshTokenInfo> RefreshTokenInfos { get; set; }
+    
 }
