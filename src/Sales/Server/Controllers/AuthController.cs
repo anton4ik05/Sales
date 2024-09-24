@@ -1,5 +1,6 @@
 ﻿using BaseLibrary.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using ServerLibrary.Repositories.Contracts;
 
 namespace Server.Controllers;
@@ -9,10 +10,17 @@ namespace Server.Controllers;
 public class AuthController(IUserAccount repository) : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] Register request)
+    public async Task<IActionResult> CreateAsync([BindRequired] [FromBody] Register user)
     {
-        if (request == null) return BadRequest("Model is null");
-        var result = await repository.CreateAsync(request);
+        var result = await repository.CreateAsync(user);
+
+        return Ok(result);
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> SignInAsync([BindRequired] [FromBody] Login user)
+    {
+        var result = await repository.SignInAsync(user);
 
         return Ok(result);
     }
