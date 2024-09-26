@@ -5,7 +5,7 @@ using ServerLibrary.Repositories.Contracts;
 
 namespace Server.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/authentication")]
 [ApiController]
 public class AuthController(IUserAccount accountInterface) : ControllerBase
 {
