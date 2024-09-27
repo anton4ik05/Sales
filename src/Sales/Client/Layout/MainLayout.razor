@@ -7,7 +7,7 @@
         var logoutModel = new UserSession();
         var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
         await customAuthStateProvider.UpdateAuthenticationState(logoutModel);
-        NavManager.NavigateTo("/", forceLoad: true);
+        NavManager.NavigateTo("/", forceLoad: false);
     }
 
 }
